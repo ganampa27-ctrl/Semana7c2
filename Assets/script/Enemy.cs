@@ -1,8 +1,12 @@
 using UnityEngine;
 public class Enemy : MonoBehaviour
 {
-    
-void Start()
+    public Animator animator;
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+    void Start()
     {
 
     }

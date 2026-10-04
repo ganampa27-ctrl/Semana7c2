@@ -20,4 +20,5 @@ public abstract class BaseAbility : MonoBehaviour
         projectile.duration = duration;
         projectile.effect = effect;
     }
+
 }

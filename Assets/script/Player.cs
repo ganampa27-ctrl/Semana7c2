@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
     public BaseAbility[] abilities;
     private InputSystem_Actions inputs;
     private BaseAbility current;
+    public Animator animator;
+    float speed = 5f;
+    private Vector2 vector2;
     private void Awake()
     {
         inputs = new();
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
         Select(0);
     }
 #endregion
+
     private void OnDisable()
     {
 
@@ -55,5 +59,20 @@ public class Player : MonoBehaviour
     public void Select(int index)
     {
         current = abilities[index];
+    }
+    private void Update()
+    {
+        {
+            vector2 = inputs.Player.Move.ReadValue<Vector2>();
+            transform.position += new Vector3(vector2.x, 0f, 0f) * Time.deltaTime * speed;
+            animator.SetFloat("movement", Mathf.Abs(vector2.x));
+
+            if (vector2.x != 0f)
+            {
+                Vector3 s = transform.localScale;
+                s.x = Mathf.Abs(s.x) * Mathf.Sign(vector2.x);
+                transform.localScale = s;
+            }
+        }
     }
 }
