@@ -60,12 +60,11 @@ public class Player : MonoBehaviour
     {
         current = abilities[index];
     }
-    private void Update()
+    private void Updte()
     {
-        {
             vector2 = inputs.Player.Move.ReadValue<Vector2>();
             transform.position += new Vector3(vector2.x, 0f, 0f) * Time.deltaTime * speed;
-            animator.SetFloat("movement", Mathf.Abs(vector2.x));
+            animator.SetFloat("Movement", Mathf.Abs(vector2.x));
 
             if (vector2.x != 0f)
             {
@@ -73,6 +72,31 @@ public class Player : MonoBehaviour
                 s.x = Mathf.Abs(s.x) * Mathf.Sign(vector2.x);
                 transform.localScale = s;
             }
+    }
+    public void MoveMechanic() 
+    {
+        vector2 = inputs.Player.Move.ReadValue<Vector2>();
+        transform.position += new Vector3(vector2.x, 0f, 0f) * Time.deltaTime * speed;
+        
+        if(vector2 != Vector2.zero)
+        {
+            animator.SetBool("OnMove", true);
+        }
+        else
+        {
+            animator.SetBool("OnMove", false);
+        }
+
+        if (vector2.x != 0f)
+        {
+            Vector3 s = transform.localScale;
+            s.x = Mathf.Abs(s.x) * Mathf.Sign(vector2.x);
+            transform.localScale = s;
         }
     }
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }   
 }
