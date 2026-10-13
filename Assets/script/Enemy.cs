@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
+
+    
     public Animator animator;
     void Awake()
     {
