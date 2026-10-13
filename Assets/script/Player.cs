@@ -74,8 +74,6 @@ public class Player : MonoBehaviour
                 transform.localScale = s;
             }
     }
-    
-
     private void Start()
     {
         animator = GetComponent<Animator>();
